@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:plant_safe/pages/slide_show_screen.dart';
+import 'package:plant_safe/screens/slide_show_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

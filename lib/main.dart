@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:plant_safe/model/user_model.dart';
-import 'package:plant_safe/pages/splash_screen.dart';
+import 'package:plant_safe/screens/splash_screen.dart';
 import 'package:plant_safe/themes/light_mode.dart';
 
 void main() async {

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:plant_safe/components/bottom_navigation_bar.dart';
 import 'package:plant_safe/components/login_button.dart';
 import 'package:plant_safe/components/loginpage_text_field.dart';
 import 'package:plant_safe/model/user_model.dart';
@@ -18,8 +19,10 @@ class LoginPage extends StatelessWidget {
   //login fun
   void login(BuildContext context) async {
     final storedUser = await UserDataBox.getLoginData();
+    if (!context.mounted) return;
     if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
       log("Please fill all the fields");
+
       Fluttertoast.showToast(
           msg: "Please fill all the fields",
           textColor: Theme.of(context).colorScheme.secondary,
@@ -28,10 +31,21 @@ class LoginPage extends StatelessWidget {
         storedUser.email == _emailController.text &&
         storedUser.password == _passwordController.text) {
       log("Login Successful");
+
       Fluttertoast.showToast(
           msg: "Login Successful",
           textColor: Theme.of(context).colorScheme.secondary,
           backgroundColor: Theme.of(context).colorScheme.inversePrimary);
+
+      Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => const BottomNavScreen(),
+          transitionsBuilder: (_, animation, __, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        ),
+      );
     } else {
       Fluttertoast.showToast(
           msg: "Invalid Email or Password",
