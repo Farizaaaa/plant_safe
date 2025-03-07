@@ -44,8 +44,8 @@ class _SlideShowScreenState extends State<SlideShowScreen> {
               setState(() => _currentPage = index);
             },
             children: const [
-              SlidePageBeta(imagePath: 'assets/images/slide_show1.avif'),
-              SlidePage(imagePath: 'assets/images/slide_show2.avif'),
+              SlidePageBeta(imagePath: 'assets/images/s.png'),
+              SlidePage(imagePath: 'assets/images/slide_two.png'),
             ],
           ),
           // Page Indicator

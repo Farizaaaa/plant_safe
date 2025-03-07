@@ -66,14 +66,16 @@ class LoginPage extends StatelessWidget {
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/login_background.jpg"),
+            image: AssetImage("assets/images/login.png"),
             fit: BoxFit.cover,
           ),
         ),
         child: Column(
           children: [
             //logo-------------------------------------------------
-
+            const SizedBox(
+              height: 100,
+            ),
             Icon(Icons.message,
                 size: 80, color: Theme.of(context).colorScheme.primary),
 
