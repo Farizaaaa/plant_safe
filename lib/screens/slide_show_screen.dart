@@ -26,9 +26,17 @@ class _SlideShowScreenState extends State<SlideShowScreen> {
   }
 
   void _exitSlideShow() {
-    Navigator.push(context, PageRouteBuilder(pageBuilder: (_, __, ___) {
-      return const LoginOrRegister();
-    }));
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return const LoginOrRegister();
+          },
+          transitionDuration: Duration.zero,
+          reverseTransitionDuration: Duration.zero),
+    );
+    
+    
   }
 
   @override
@@ -124,7 +132,7 @@ class SlidePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      alignment: Alignment.topRight,
+     
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -132,25 +140,72 @@ class SlidePage extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: SizedBox(
-        height: size.height / 2,
-        width: size.width / 3,
-        child: Text(
-          "Scan, Identify, Grow - Your Plant’s Health in a Tap!",
-          style: GoogleFonts.lilitaOne(
-            fontSize: 30,
-            shadows: [
-              const Shadow(
-                blurRadius: 3.0,
-                color: Color.fromARGB(255, 40, 125, 21),
-                offset: Offset(2.0, 5.0),
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              const SizedBox(
+                height: 100,
+              ),
+              SizedBox(
+                height: size.height / 2,
+                width: size.width / 2,
+                child: Text(
+                  "Scan, Identify, Grow - Your Plant’s Health in a Tap!",
+                  style: GoogleFonts.lilitaOne(
+                    shadows: [
+                      const Shadow(
+                        blurRadius: 10.0,
+                        color: Color.fromARGB(255, 74, 202, 39),
+                        offset: Offset(5.0, 5.0),
+                      ),
+                    ],
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: const Color.fromARGB(255, 14, 120, 8),
+                  ),
+                ),
               ),
             ],
-            wordSpacing: Checkbox.width,
-            fontWeight: FontWeight.bold,
-            color: const Color.fromARGB(255, 225, 235, 226),
           ),
-        ),
+          Positioned(
+            top: 20,
+            right: 0,
+            child: Container(
+              alignment: Alignment.centerRight,
+              height: size.height / 6,
+              width: size.width / 2,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Plant Safe",
+                    style: GoogleFonts.lilitaOne(
+                      shadows: [
+                        const Shadow(
+                          blurRadius: 10.0,
+                          color: Color.fromARGB(255, 74, 202, 39),
+                          offset: Offset(5.0, 5.0),
+                        ),
+                      ],
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 14, 120, 8),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height / 18, // **Relative Scaling**
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                    ),
+                  ),
+                ],
+          ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -165,18 +220,65 @@ class SlidePageBeta extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      alignment: Alignment.centerRight,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(imagePath),
           fit: BoxFit.cover,
         ),
       ),
-      child: SizedBox(
-        width: size.width / 3,
-        child: Text(
-          "A healthy plant is a happy plant",
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, // **Balance Layout**
+        children: [
+          // **App Name & Logo - Centered**
+          Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Plant Safe",
+                style: GoogleFonts.lilitaOne(
+                  shadows: [
+                    const Shadow(
+                      blurRadius: 10.0,
+                      color: Color.fromARGB(255, 74, 202, 39),
+                      offset: Offset(5.0, 5.0),
+                    ),
+                  ],
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: const Color.fromARGB(255, 14, 120, 8),
+                ),
+              ),
+              SizedBox(
+                height: size.height / 18, // **Relative Scaling**
+                child: Image.asset(
+                  "assets/images/logo.png",
+                ),
+              ),
+            ],
+          ),
+
+          // **Welcome Text - Centered**
+          Expanded(
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Welcome to PlantSafe",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.lilitaOne(
+                      fontSize: 18, // Smaller size
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 14, 120, 8),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    "\nA healthy plant is a happy plant",
+                    textAlign: TextAlign.center,
           style: GoogleFonts.lilitaOne(
             shadows: [
               const Shadow(
@@ -185,12 +287,16 @@ class SlidePageBeta extends StatelessWidget {
                 offset: Offset(5.0, 5.0),
               ),
             ],
-            fontSize: 30,
-            wordSpacing: Checkbox.width,
+                      fontSize: 30,
             fontWeight: FontWeight.bold,
             color: const Color.fromARGB(255, 14, 120, 8),
           ),
         ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

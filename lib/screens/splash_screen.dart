@@ -48,6 +48,14 @@ class _SplashScreenState extends State<SplashScreen>
         child: FadeTransition(
             opacity: _animation,
             child: Container(
+              width: size.width,
+              height: size.height,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        "assets/images/s.png",
+                      ),
+                      fit: BoxFit.cover)),
               child: Stack(
                 children: [
                   Center(
@@ -57,10 +65,18 @@ class _SplashScreenState extends State<SplashScreen>
                       width: size.width / 2,
                       child: Text(
                         "Plant Safe",
-                        style: GoogleFonts.righteous(
+                        style: GoogleFonts.lilitaOne(
                           fontSize: 30,
+                          shadows: [
+                            const Shadow(
+                              blurRadius: 3.0,
+                              color: Color.fromARGB(255, 40, 125, 21),
+                              offset: Offset(2.0, 5.0),
+                            ),
+                          ],
+                          wordSpacing: Checkbox.width,
                           fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 11, 177, 2),
+                          color: const Color.fromARGB(255, 111, 202, 120),
                         ),
                       ),
                     ),
