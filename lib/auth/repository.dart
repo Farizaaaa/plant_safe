@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:plant_safe/auth/login_or_register.dart';
 import 'package:plant_safe/components/bottom_navigation_bar.dart';
 import 'package:plant_safe/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -133,7 +134,7 @@ class AuthRepo {
     Navigator.pushReplacement(
       context,
       PageRouteBuilder(
-        pageBuilder: (_, __, ___) => const BottomNavScreen(),
+        pageBuilder: (_, __, ___) => const LoginOrRegister(),
         transitionsBuilder: (_, animation, __, child) {
           return FadeTransition(opacity: animation, child: child);
         },

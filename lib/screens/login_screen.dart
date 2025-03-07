@@ -18,7 +18,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
         onTap: () {

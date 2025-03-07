@@ -31,8 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<String?> getUserEmail() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    email = prefs.getString('email');
-    return null;
+    return prefs.getString('email');
   }
 
   @override
@@ -58,12 +57,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(email ?? "",
-                    style: GoogleFonts.lilitaOne(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 14, 120, 8),
-                    )),
+                FutureBuilder<String?>(
+                  future: getUserEmail(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    }
+                    return Text(
+                      snapshot.data ?? "No email found",
+                      style: GoogleFonts.lilitaOne(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 14, 120, 8),
+                      ),
+                    );
+                  },
+                ),
+
                 SizedBox(height: size.height / 18),
                 GestureDetector(
                     onTap: () {
