@@ -65,10 +65,11 @@ class _SplashScreenState extends State<SplashScreen>
                       width: size.width / 2,
                       child: Text(
                         "Plant Safe",
-                        style: GoogleFonts.lilitaOne(
+                        style: TextStyle(
                           fontSize: 30,
-                          shadows: [
-                            const Shadow(
+                          fontFamily: GoogleFonts.lilitaOne().fontFamily,
+                          shadows: const [
+                            Shadow(
                               blurRadius: 3.0,
                               color: Color.fromARGB(255, 40, 125, 21),
                               offset: Offset(2.0, 5.0),

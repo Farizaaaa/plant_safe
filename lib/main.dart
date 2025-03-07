@@ -12,7 +12,7 @@ void main() async {
   await UserDataBox.openBox();
   Hive.registerAdapter(ImageInfoModelAdapter());
   await ImageDatabase.openBox();
- 
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
 }
 
